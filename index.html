@@ -7,32 +7,36 @@
     <title>AI Personal Finance Coach</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* ************************ Chatbot Styles ************************ */
         .chat-container {
-            max-width: 450px;
+            max-width: 500px;
             margin: 0 auto;
-            border: 1px solid #25fbdb69;
-            border-radius: 8px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 6px 8px rgba(0, 136, 255, 0.228);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             transition: all 0.3s ease-in-out;
         }
 
         .chat-container:hover {
             box-shadow: 0 8px 16px rgba(26, 129, 232, 0.525), 0 0 20px rgba(66, 185, 244, 0.483);
             transform: translateY(-5px);
-            transition: all 0.3s ease-in-out;
         }
 
         .chat-messages {
             height: 350px;
             overflow-y: auto;
             padding: 1rem;
-            background-color: #f9fafb;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
         }
 
         .chat-input {
             display: flex;
-            border-top: 1px solid #e5e7eb;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .chat-input input {
@@ -40,41 +44,121 @@
             padding: 0.5rem;
             border: none;
             outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border-radius: 8px;
         }
 
         .chat-input button {
             padding: 0.5rem 1rem;
-            background-color: #3b82f6;
+            background-color: rgba(59, 130, 246, 0.8);
             color: white;
             border: none;
             cursor: pointer;
+            border-radius: 8px;
         }
 
         .chat-input button:hover {
-            background-color: #2563eb;
+            background-color: rgba(37, 100, 235, 0.8);
+        }
+
+        .b1:hover {
+            background-color: #002ca5d4;
+        }
+
+        .b2:hover {
+            background-color: #002ca5d4;
+        }
+        button {
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        button:active {
+            transform: scale(0.95);
+            opacity: 0.8;
+        }
+        /* ************************ General Styles ************************ */
+        body {
+            background: linear-gradient(270deg, #a1c4fd, #c2e9fb, #fbc2eb, #a6c1ee);
+            background-size: 800% 800%;
+            animation: gradientAnimation 10s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes glowing {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .glowing-hr {
+            height: 2px;
+            border: none;
+            background: linear-gradient(90deg, rgb(0, 234, 255), rgb(255, 21, 165), rgba(103, 0, 241, 1), rgb(4, 188, 136), rgb(0, 234, 255), rgb(255, 21, 165), rgba(103, 0, 241, 1), rgb(0, 255, 174));
+            background-size: 400% 400%;
+            animation: glowing 4s linear infinite;
+        }
+        /* ************************ Navbar Styles ************************ */
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.2rem 1rem 0.3rem 1rem;
+            border-radius: 40px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        nav ul li a:hover {
+            color: rgb(49, 68, 72);
+            transform: scale(1.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 
-<body class="bg-blue-50">
-    <div class="container mx-auto py-10 bg-blue-50 ">
-        <div class="chat-container bg-blue-50 hover:shadow-blue-400 hover:scale-105 transition-all duration-500">
+<body class="bg-blue-100">
+    <!-- ************************ Header Section ************************ -->
+    <header class="Navbartext-white py-4 shadow-md">
+        <div class="container pl-10 pr-6 mx-auto flex justify-between items-center">
+            <h1 class="text-4xl font-extrabold relative">
+                <span class="bg-clip-text text-transparent" style="background-image: url('BG5.gif'); background-size: 100% 100%; background-clip: text; -webkit-background-clip: text;">Finance Coach</span>
+            </h1>
+            <nav>
+                <ul class="flex space-x-2">
+                    <li class="px-2.5 pb-1 pt-0.5 "><a href="#home">Home</a></li>
+                    <li class="px-2.5 pb-1 pt-0.5 "><a href="#savings">Savings</a></li>
+                    <li class="px-2.5 pb-1 pt-0.5 "><a href="#debtPlan">Debt Plan</a></li>
+                    <li class="px-2.5 pb-1 pt-0.5 "><a href="#about">About us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <hr class="glowing-hr mb-4 mx-auto w-2/3">
+
+    <!-- ************************ Chatbot Section ************************ -->
+    <div class="container mx-auto py-20 ">
+        <div class="chat-container bg-blue-100 hover:shadow-blue-400 hover:scale-105 transition-all duration-500">
             <h1 class="text-3xl font-bold text-center mb-2 mt-6 text-blue-600">AI Personal Finance Coach</h1>
-            <div id="chat-messages" class="chat-messages bg-blue-50">
+            <div id="chat-messages" class="chat-messages bg-blue-100">
                 <div class="suggested-questions mt-4 p-4 border rounded-lg bg-gray-100 shadow">
                     <h2 class="text-sm font-semibold mb-2">Suggested Questions</h2>
                     <div class="flex flex-wrap gap-2">
-                        <button class="px-3 py-1 bg-blue-500 text-white rounded-full hover:bg-blue-600"
+                        <button class="b1 px-3 py-1 bg-green-400 text-white rounded-full "
                             onclick="searchAIChat('How can I save more money?')">How can I save more money?</button>
-                        <button class="px-3 py-1 bg-blue-500 text-white rounded-full hover:bg-blue-600"
+                        <button class="b2 px-3 py-1 bg-blue-500 text-white rounded-full "
                             onclick="searchAIChat('What is the best way to invest?')">What is the best way to
                             invest?</button>
-                        <button class="px-3 py-1 bg-blue-500 text-white rounded-full hover:bg-blue-600"
+                        <button class="b1 px-3 py-1 bg-green-400 text-white rounded-full "
                             onclick="searchAIChat('How do I create a budget?')">How do I create a budget?</button>
-                        <button class="px-3 py-1 bg-blue-500 text-white rounded-full hover:bg-blue-600"
+                        <button class="b2 px-3 py-1 bg-blue-500 text-white rounded-full"
                             onclick="searchAIChat('What are some tips for reducing debt?')">What are some tips for
                             reducing debt?</button>
-                        <button class="px-3 py-1 bg-blue-500 text-white rounded-full hover:bg-blue-600"
+                        <button class="b1 px-3 py-1 bg-green-400 text-white rounded-full"
                             onclick="searchAIChat('How can I improve my credit score?')">How can I improve my credit
                             score?</button>
                     </div>
@@ -87,201 +171,493 @@
         </div>
     </div>
 
+    <hr class="hr1 mt-20 border-t-1 border-slate-700 mx-auto w-full">
+
+    <!-- ************************ About Us Section ************************ -->
+    <div id="about-us-home" class="about-container bg-blue-50 px-10 py-2 shadow-md">
+        <h2 class="text-2xl font-bold mb-3 text-center text-blue-700">About Us</h2>
+        <p class="text-sm text-gray-700 mb-3">We are dedicated to helping you manage your finances effectively. Our
+            mission is to provide tools and resources to empower you in making informed financial decisions.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+                <h3 class="text-base font-semibold text-blue-600">Our Vision</h3>
+                <p class="text-sm text-gray-600">To be the leading platform for personal finance management, enabling
+                    individuals to achieve financial freedom.</p>
+            </div>
+            <div>
+                <h3 class="text-base font-semibold text-blue-600">Our Mission</h3>
+                <p class="text-sm text-gray-600">To provide innovative tools and expert advice that simplify financial
+                    planning and decision-making.</p>
+            </div>
+        </div>
+        <div class="mt-3">
+            <h3 class="text-base font-semibold text-blue-600">Contact Us</h3>
+            <form class="mt-2 grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div class="mb-3">
+                    <label for="name" class="block text-sm text-gray-700 font-medium">Name:</label>
+                    <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded"
+                        placeholder="Your Name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="block text-sm text-gray-700 font-medium">Email:</label>
+                    <input type="email" id="email" class="w-full p-2 border border-gray-300 rounded"
+                        placeholder="Your Email">
+                </div>
+                <div class="mb-3 col-span-1">
+                    <label for="message" class="block text-sm text-gray-700 font-medium">Message:</label>
+                    <textarea id="message" class="w-full p-2 border border-gray-300 rounded" rows="1"
+                        placeholder="Your Message"></textarea>
+                </div>
+                <div class="col-span-3 text-center">
+                    <button type="submit" class="bg-blue-500 text-white px-3 py-1.5 rounded hover:bg-blue-600">Send
+                        Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ************************ Savings Section ************************ -->
+    <div id="savings" class="section p-6 shadow-md mt-6" style="background-color: rgb(219 234 254 / var(--tw-bg-opacity, 1)); border-radius: 16px; max-width: 50%; margin: 0 auto;">
+        <h2 class="text-3xl font-bold mb-4 text-center text-blue-700">Savings Calculator</h2>
+        <p class="text-base text-gray-700 mb-4 text-center">Calculate how long it will take to reach your savings goal.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="form-group">
+                <label for="monthly-income" class="block text-gray-700 font-medium">Monthly Income:</label>
+                <input type="number" id="monthly-income" class="w-full p-2 border border-gray-300 rounded"
+                    placeholder="Enter your monthly income">
+            </div>
+            <div class="form-group">
+                <label for="monthly-expenses" class="block text-gray-700 font-medium">Monthly Expenses:</label>
+                <input type="number" id="monthly-expenses" class="w-full p-2 border border-gray-300 rounded"
+                    placeholder="Enter your monthly expenses">
+            </div>
+            <div class="form-group">
+                <label for="savings-goal" class="block text-gray-700 font-medium">Savings Goal:</label>
+                <input type="number" id="savings-goal" class="w-full p-2 border border-gray-300 rounded"
+                    placeholder="Enter your savings goal">
+            </div>
+            <div class="form-group">
+                <label for="target-date" class="block text-gray-700 font-medium">Target Date (in months):</label>
+                <input type="number" id="target-date" class="w-full p-2 border border-gray-300 rounded"
+                    placeholder="Enter target date in months">
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <button onclick="calculateSavings()"
+                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Calculate</button>
+        </div>
+        <div id="savings-result"
+            class="result mt-4 p-4 bg-green-50 border border-green-300 rounded text-green-700 text-center"></div>
+    </div>
+
+    <!-- ************************ Debt Plan Section ************************ -->
+    <div id="debtPlan" class="section p-6 shadow-md mt-6" style="background-color: rgb(219 234 254 / var(--tw-bg-opacity, 1)); border-radius: 16px; max-width: 50%; margin: 0 auto;">
+        <h2 class="text-3xl font-bold mb-4 text-center text-blue-700">Debt Planner</h2>
+        <p class="text-base text-gray-700 mb-4 text-center">Plan your debt repayment strategy effectively.</p>
+        <form id="debt-form" class="space-y-4 grid grid-cols-1 md:grid-cols-2 gap-4 items-baseline">
+            <div>
+                <label for="debt-name" class="block text-gray-700 font-medium">Debt Name:</label>
+                <input type="text" id="debt-name" name="debt_name" class="w-full p-2 border border-gray-300 rounded"
+                    placeholder="Enter debt name" required>
+            </div>
+            <div>
+                <label for="balance" class="block text-gray-700 font-medium">Balance:</label>
+                <input type="number" id="balance" name="balance" class="w-full p-2 border border-gray-300 rounded"
+                    placeholder="Enter balance" required>
+            </div>
+            <div>
+                <label for="interest-rate" class="block text-gray-700 font-medium">Interest Rate (%):</label>
+                <input type="number" id="interest-rate" name="interest_rate"
+                    class="w-full p-2 border border-gray-300 rounded" placeholder="Enter interest rate" required>
+            </div>
+            <div>
+                <label for="minimum-payment" class="block text-gray-700 font-medium">Minimum Payment:</label>
+                <input type="number" id="minimum-payment" name="minimum_payment"
+                    class="w-full p-2 border border-gray-300 rounded" placeholder="Enter minimum payment" required>
+            </div>
+            <div>
+                <label for="strategy" class="block text-gray-700 font-medium">Strategy:</label>
+                <select id="strategy" name="strategy" class="w-full p-2 border border-gray-300 rounded">
+                    <option value="snowball">Snowball Method</option>
+                    <option value="avalanche">Avalanche Method</option>
+                </select>
+            </div>
+            <div>
+                <label for="repayment-date" class="block text-gray-700 font-medium">Target Repayment Date
+                    (Optional):</label>
+                <input type="date" id="repayment-date" name="repayment_date"
+                    class="w-full p-2 border border-gray-300 rounded">
+            </div>
+            <div class="text-center mt-4 col-span-2 flex justify-center items-center">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Generate
+                    Plan</button>
+            </div>
+        </form>
+        <div id="debt-plan-result" class="mt-6 mb-20 p-4 bg-green-50 border border-green-300 rounded text-green-700"></div>
+    </div>
+
+    <!-- ************************ Scripts Section ************************ -->
     <script>
-        const chatMessages = document.getElementById('chat-messages');
-        const userInput = document.getElementById('user-input');
-        const sendButton = document.getElementById('send-button');
+        document.addEventListener('DOMContentLoaded', function () {
+            const debtForm = document.getElementById('debt-form');
+            const resultsContainer = document.getElementById('debt-plan-results-container') || document.createElement('div');
+            resultsContainer.id = 'debt-plan-results-container';
+            debtForm.parentNode.insertBefore(resultsContainer, debtForm.nextSibling);
 
-        const GEMINI_API_KEY = 'AIzaSyD6sPgQnOcTuU8owVF3weVEek-e2od9kEw';
-        const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+            debtForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
 
-        let chatHistory = [];
+                const debtData = {
+                    debt_name: document.getElementById('debt-name').value,
+                    balance: parseFloat(document.getElementById('balance').value),
+                    interest_rate: parseFloat(document.getElementById('interest-rate').value),
+                    minimum_payment: parseFloat(document.getElementById('minimum-payment').value),
+                    strategy: document.getElementById('strategy').value,
+                    repayment_date: document.getElementById('repayment-date').value || null
+                };
 
-        function beautifyText(text) {
-            text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+                try {
+                    const aiResponse = await getGeminiResponse(`
+                You are a personal finance expert. Please generate a debt repayment strategy based on the following details:
+                Debt Name: ${debtData.debt_name},
+                Balance: ${debtData.balance},
+                Interest Rate: ${debtData.interest_rate}%,
+                Minimum Payment: ${debtData.minimum_payment},
+                Strategy: ${debtData.strategy},
+                Target Repayment Date: ${debtData.repayment_date || 'Not specified'}. Please format the response with markdown-like syntax for emphasis (using '*') and newlines where appropriate for readability. Be clear and concise. Don't exceed 150 words. Note: All transactions are in INR.
+              `);
 
-            text = text.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+                    const debtPlanDiv = document.createElement('div');
+                    debtPlanDiv.classList.add('mb-4', 'p-4', 'border', 'border-gray-300', 'rounded-md');
 
-            return text;
-        }
+                    const heading = document.createElement('h3');
+                    heading.classList.add('text-lg', 'font-bold', 'mb-2');
+                    heading.textContent = `Debt: ${debtData.debt_name}`;
 
-        async function addMessageToChat(sender, message) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('mb-2');
+                    const formattedResponse = aiResponse
+                        .split('\n')
+                        .map(line => {
+                            let formattedLine = line;
+                            formattedLine = formattedLine.replace(/\*(.*?)\*/g, '<span class="font-semibold">$1</span>');
+                            return `<p>${formattedLine}</p>`;
+                        })
+                        .join('');
 
-            if (sender === 'AI Coach') {
-                messageElement.innerHTML = `<strong>${sender}:</strong> `;
-                chatMessages.appendChild(messageElement);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                    const detailsList = document.createElement('ul');
+                    detailsList.classList.add('list-disc', 'ml-5', 'mt-2');
+                    detailsList.innerHTML = `
+                <li><span class="font-semibold">Balance:</span> ₹${debtData.balance}</li>
+                <li><span class="font-semibold">Interest Rate:</span> ${debtData.interest_rate}%</li>
+                <li><span class="font-semibold">Minimum Payment:</span> ₹${debtData.minimum_payment}</li>
+                <li><span class="font-semibold">Strategy Type:</span> ${debtData.strategy}</li>
+                ${debtData.repayment_date ? `<li><span class="font-semibold">Target Date:</span> ${debtData.repayment_date}</li>` : ''}
+              `;
+
+                    debtPlanDiv.appendChild(heading);
+                    debtPlanDiv.innerHTML += `<div class="mb-2">${formattedResponse}</div>`;
+                    debtPlanDiv.appendChild(detailsList);
+
+                    resultsContainer.appendChild(debtPlanDiv);
+
+                } catch (error) {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.classList.add('text-red-500', 'mb-4');
+                    errorDiv.textContent = `Error fetching strategy for ${debtData.debt_name}: ${error.message}`;
+                    resultsContainer.appendChild(errorDiv);
+                }
+            });
+        });
+    </script>
+
+
+
+<script>
+    const chatMessages = document.getElementById('chat-messages');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+
+    const GEMINI_API_KEY = 'AIzaSyD6sPgQnOcTuU8owVF3weVEek-e2od9kEw';
+    const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+
+    let chatHistory = [];
+
+    function beautifyText(text) {
+        // Bold text: **text**
+        text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        // Italic text: *text*
+        text = text.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+        // New lines handling: \n
+        return text;
+    }
+
+    async function addMessageToChat(sender, message) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('mb-2');
+
+        if (sender === 'AI Coach') {
+            messageElement.innerHTML = `<strong>${sender}:</strong> `;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            const formattedMessage = beautifyText(message);
+            const lines = formattedMessage.split('\n');
+
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                const lineElement = document.createElement('p');
 
                 const tempContainer = document.createElement('div');
-                tempContainer.innerHTML = beautifyText(message);
+                tempContainer.innerHTML = line;
 
-                for (const node of tempContainer.childNodes) {
+                for (let j = 0; j < tempContainer.childNodes.length; j++) {
+                    const node = tempContainer.childNodes[j];
                     if (node.nodeType === Node.TEXT_NODE) {
-                        for (let i = 0; i < node.textContent.length; i++) {
-                            messageElement.innerHTML += node.textContent[i];
+                        for (let k = 0; k < node.textContent.length; k++) {
+                            const charSpan = document.createElement('span');
+                            charSpan.textContent = node.textContent[k];
+                            lineElement.appendChild(charSpan);
                             await new Promise(resolve => setTimeout(resolve, 1));
                             chatMessages.scrollTop = chatMessages.scrollHeight;
                         }
                     } else {
-                        messageElement.appendChild(node.cloneNode(true));
+                        lineElement.appendChild(node.cloneNode(true));
+                        await new Promise(resolve => setTimeout(resolve, 1));
                         chatMessages.scrollTop = chatMessages.scrollHeight;
                     }
                 }
-            } else {
-                messageElement.textContent = `${sender}: ${message}`;
-                chatMessages.appendChild(messageElement);
+
+                messageElement.appendChild(lineElement); // Append the formatted line to the main message element
                 chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-
-            chatHistory.push({ sender, message });
-        }
-
-        async function loadChatHistory() {
-            try {
-                const response = await fetch('api/storage.php?action=load&type=chat_history');
-                if (!response.ok) {
-                    throw new Error(`Failed to load chat history: ${response.status} ${response.statusText}`);
+                if (i < lines.length - 1) {
+                    await new Promise(resolve => setTimeout(resolve, 2)); // Delay between lines
                 }
-                const history = await response.json();
-                chatHistory = history || [];
-
-                chatHistory.forEach(chat => {
-                    addMessageToChat(chat.sender, chat.message);
-                });
-            } catch (error) {
-                console.error('Error loading chat history:', error);
             }
+        } else {
+            messageElement.innerHTML = `<strong>${sender}:</strong> ${message.replace(/\n/g, '<br>')}`;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        async function saveChatHistory() {
-            try {
-                const response = await fetch('api/storage.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        action: 'save',
-                        type: 'chat_history',
-                        data: chatHistory
-                    })
-                });
+        chatHistory.push({ sender, message });
+    }
 
-                if (!response.ok) {
-                    throw new Error(`Failed to save chat history: ${response.status} ${response.statusText}`);
-                }
-            } catch (error) {
-                console.error('Error saving chat history:', error);
+    async function loadChatHistory() {
+        try {
+            const response = await fetch('api/storage.php?action=load&type=chat_history');
+            if (!response.ok) {
+                throw new Error(`Failed to load chat history: ${response.status} ${response.statusText}`);
             }
-        }
+            const history = await response.json();
+            chatHistory = history || [];
 
-        async function getGeminiResponse(message) {
-            try {
-                const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
+            chatHistory.forEach(chat => {
+                addMessageToChat(chat.sender, chat.message);
+            });
+        } catch (error) {
+            console.error('Error loading chat history:', error);
+        }
+    }
+
+    async function saveChatHistory() {
+        try {
+            const response = await fetch('api/storage.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    action: 'save',
+                    type: 'chat_history',
+                    data: chatHistory
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to save chat history: ${response.status} ${response.statusText}`);
+            }
+        } catch (error) {
+            console.error('Error saving chat history:', error);
+        }
+    }
+
+    async function getGeminiResponse(message) {
+        try {
+            const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{
+                            text: `You are a personal finance expert. Please provide clear, concise, and accurate advice about personal finance. Use markdown-like syntax for formatting: **bold text**, *italic text*, and \\n for new lines. \nThe user's question is: ${message}`
+                        }]
+                    }],
+                    generationConfig: {
+                        temperature: 0.7,
+                        topK: 40,
+                        topP: 0.95,
+                        maxOutputTokens: 1024,
                     },
-                    body: JSON.stringify({
-                        contents: [{
-                            parts: [{
-                                text: `You are a personal finance expert. Please provide clear, concise, and accurate advice about personal finance. \nThe user's question is: ${message}`
-                            }]
-                        }],
-                        generationConfig: {
-                            temperature: 0.7,
-                            topK: 40,
-                            topP: 0.95,
-                            maxOutputTokens: 1024,
+                    safetySettings: [
+                        {
+                            category: "HARM_CATEGORY_HARASSMENT",
+                            threshold: "BLOCK_MEDIUM_AND_ABOVE"
                         },
-                        safetySettings: [
-                            {
-                                category: "HARM_CATEGORY_HARASSMENT",
-                                threshold: "BLOCK_MEDIUM_AND_ABOVE"
-                            },
-                            {
-                                category: "HARM_CATEGORY_HATE_SPEECH",
-                                threshold: "BLOCK_MEDIUM_AND_ABOVE"
-                            },
-                            {
-                                category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-                                threshold: "BLOCK_MEDIUM_AND_ABOVE"
-                            },
-                            {
-                                category: "HARM_CATEGORY_DANGEROUS_CONTENT",
-                                threshold: "BLOCK_MEDIUM_AND_ABOVE"
-                            }
-                        ]
-                    })
-                });
+                        {
+                            category: "HARM_CATEGORY_HATE_SPEECH",
+                            threshold: "BLOCK_MEDIUM_AND_ABOVE"
+                        },
+                        {
+                            category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                            threshold: "BLOCK_MEDIUM_AND_ABOVE"
+                        },
+                        {
+                            category: "HARM_CATEGORY_DANGEROUS_CONTENT",
+                            threshold: "BLOCK_MEDIUM_AND_ABOVE"
+                        }
+                    ]
+                })
+            });
 
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    console.error('API Error:', errorData);
-                    throw new Error(`API Error: ${response.status} ${response.statusText}. Error data: ${JSON.stringify(errorData)}`);
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('API Error:', errorData);
+                throw new Error(`API Error: ${response.status} ${response.statusText}. Error data: ${JSON.stringify(errorData)}`);
+            }
+
+            const data = await response.json();
+
+            if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
+                throw new Error('Invalid API response format');
+            }
+
+            return data.candidates[0].content.parts[0].text;
+        } catch (error) {
+            console.error('Error getting Gemini response:', error);
+            throw error;
+        }
+    }
+
+    async function handleUserInput() {
+        const message = userInput.value.trim();
+        if (message) {
+            addMessageToChat('You', message);
+            userInput.value = '';
+
+            try {
+                const loadingMessage = addMessageToChat('AI Coach', 'Thinking...');
+
+                const response = await getGeminiResponse(message);
+
+                if (loadingMessage && loadingMessage.parentNode) {
+                    loadingMessage.remove();
                 }
 
-                const data = await response.json();
+                addMessageToChat('AI Coach', response);
 
-                if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
-                    throw new Error('Invalid API response format');
-                }
-
-                return data.candidates[0].content.parts[0].text;
+                await saveChatHistory();
             } catch (error) {
-                console.error('Error getting Gemini response:', error);
-                throw error;
-            }
-        }
+                console.error('Error getting AI response:', error);
 
-        async function handleUserInput() {
-            const message = userInput.value.trim();
-            if (message) {
-                addMessageToChat('You', message);
-                userInput.value = '';
-
-                try {
-                    const loadingMessage = addMessageToChat('AI Coach', 'Thinking...');
-
-                    const response = await getGeminiResponse(message);
-
-                    if (loadingMessage && loadingMessage.parentNode) {
-                        loadingMessage.remove();
-                    }
-
-                    addMessageToChat('AI Coach', response);
-
-                    await saveChatHistory();
-                } catch (error) {
-                    console.error('Error getting AI response:', error);
-
-                    if (loadingMessage && loadingMessage.parentNode) {
-                        loadingMessage.remove();
-                    }
-
-                    addMessageToChat('AI Coach', 'Sorry, I encountered an error. Please try again. If the problem persists, please check your internet connection and try again later.');
+                if (loadingMessage && loadingMessage.parentNode) {
+                    loadingMessage.remove();
                 }
+
+                addMessageToChat('AI Coach', 'Sorry, I encountered an error. Please try again. If the problem persists, please check your internet connection and try again later.');
             }
         }
+    }
 
-        document.addEventListener('DOMContentLoaded', loadChatHistory);
+    document.addEventListener('DOMContentLoaded', loadChatHistory);
 
-        sendButton.addEventListener('click', handleUserInput);
+    sendButton.addEventListener('click', handleUserInput);
 
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                handleUserInput();
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            handleUserInput();
+        }
+    });
+
+    function searchAIChat(question) {
+        const userInput = document.getElementById('user-input');
+        userInput.value = question;
+        document.getElementById('send-button').click();
+    }
+
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('nav a');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+
+            sections.forEach(section => {
+                section.style.display = section.id === targetId ? 'block' : 'none';
+            });
+
+            const chatContainer = document.querySelector('.chat-container');
+            const aboutUsHome = document.getElementById('about-us-home');
+            if (targetId === 'savings' || targetId === 'debtPlan') {
+                chatContainer.style.display = 'none';
+                chatContainer.style.margin = '0 auto';
+                chatContainer.style.padding = '0';
+                aboutUsHome.style.display = 'none';
+            } else {
+                chatContainer.style.display = 'block';
+                chatContainer.style.padding = '20px 1rem';
+                aboutUsHome.style.display = 'block';
+            }
+
+            const hrElements = document.querySelectorAll('.hr1');
+            if (targetId === 'savings' || targetId === 'debtPlan') {
+                hrElements.forEach(element => {
+                    element.style.display = 'none';
+                });
+            } else {
+                hrElements.forEach(element => {
+                    element.style.display = 'block';
+                });
+            }
+
+            if (targetId === 'about') {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
             }
         });
+    });
 
-        function searchAIChat(question) {
-            const userInput = document.getElementById('user-input');
-            userInput.value = question;
-            document.getElementById('send-button').click();
+    function calculateSavings() {
+        const monthlyIncome = parseFloat(document.getElementById('monthly-income').value);
+        const monthlyExpenses = parseFloat(document.getElementById('monthly-expenses').value);
+        const savingsGoal = parseFloat(document.getElementById('savings-goal').value);
+        const targetDate = parseFloat(document.getElementById('target-date').value);
+
+        if (isNaN(monthlyIncome) || isNaN(monthlyExpenses) || isNaN(savingsGoal) || isNaN(targetDate)) {
+            document.getElementById('savings-result').innerText = '❌ Please fill in all fields correctly.';
+            return;
         }
-    </script>
+
+        const monthlySavings = monthlyIncome - monthlyExpenses;
+
+        if (monthlySavings <= 0) {
+            document.getElementById('savings-result').innerText = '❌ Your expenses exceed or equal your income. Savings are not possible.';
+            return;
+        }
+
+        const monthsNeeded = savingsGoal / monthlySavings;
+
+        if (monthsNeeded > targetDate) {
+            document.getElementById('savings-result').innerText = `❌ You cannot reach your savings goal within ${targetDate} months. You need approximately ${Math.ceil(monthsNeeded)} months.`;
+        } else {
+            document.getElementById('savings-result').innerText = `✅ You can reach your savings goal of ₹${savingsGoal} in ${Math.ceil(monthsNeeded)} months.`;
+        }
+    }
+
+    // Hide all sections except home
+    sections.forEach(section => section.style.display = section.id === 'home' ? 'block' : 'none');
+</script>
 </body>
 
 </html>
