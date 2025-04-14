@@ -859,18 +859,58 @@
                         headers: { 'Accept': 'application/json' }
                     }).then(response => {
                         if (response.ok) {
-                            alert('Thank you for contacting us! We will get back to you soon.');
                             contactForm.reset();
                         } else {
-                            alert('Sorry, there was a problem submitting your message. Please try again later.');
+                            // alert removed
                         }
                     }).catch(() => {
-                        alert('Sorry, there was a problem submitting your message. Please try again later.');
+                        // alert removed
                     });
                 });
             }
         });
     </script>
-</body>
 
+    <!-- Thank You Modal -->
+    <div id="thankyou-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg p-8 max-w-sm w-full text-center">
+            <h2 class="text-2xl font-bold mb-4 text-green-600">Thank You!</h2>
+            <p class="mb-6 text-gray-700">Thank you for contacting us! We will get back to you soon.</p>
+            <button id="close-thankyou-modal" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Thank you popup for Formspree contact form (centered modal)
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactForm = document.getElementById('contact-form');
+            const thankyouModal = document.getElementById('thankyou-modal');
+            const closeThankyouModal = document.getElementById('close-thankyou-modal');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const formData = new FormData(contactForm);
+                    fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    }).then(response => {
+                        if (response.ok) {
+                            thankyouModal.classList.remove('hidden');
+                            contactForm.reset();
+                        } 
+                        // Removed browser alert popups for both success and error
+                    }).catch(() => {
+                        // No alert on error, optionally handle error UI here
+                    });
+                });
+            }
+            if (closeThankyouModal && thankyouModal) {
+                closeThankyouModal.addEventListener('click', function () {
+                    thankyouModal.classList.add('hidden');
+                });
+            }
+        });
+    </script>
+</body>
 </html>
